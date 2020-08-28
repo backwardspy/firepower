@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://bullets/Bullet.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.75752
+
+[node name="Bullet" instance=ExtResource( 1 )]
+speed = 300.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Shadow" parent="." index="1"]
+frame = 57
+
+[node name="Sprite" parent="." index="2"]
+frame = 49
