@@ -15,4 +15,5 @@ func _ready():
     $FireTimer.start(time_between_shots)
 
 func _on_FireTimer_timeout():
-    fire()
+    if Input.is_action_pressed("shoot"):
+        fire()

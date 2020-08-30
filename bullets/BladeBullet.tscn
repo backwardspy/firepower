@@ -36,6 +36,8 @@ radius = 9.65021
 
 [node name="Bullet" instance=ExtResource( 1 )]
 speed = 200.0
+damage = 20.0
+break_on_hit = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 autoplay = "blade-spin"
