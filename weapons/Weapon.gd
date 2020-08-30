@@ -1,19 +1,21 @@
 extends Node2D
 
-export var bullet: PackedScene
+export var bullet_scene: PackedScene
 export var time_between_shots := 0.2
 
+onready var _timer := $FireTimer
+
 func fire():
-    var _bullet: Bullet = bullet.instance()
-    _bullet.position = $MuzzlePoint.global_position
-    _bullet.fire(global_transform.x)
-    get_tree().root.add_child(_bullet)
+    var bullet: Bullet = bullet_scene.instance()
+    bullet.position = $MuzzlePoint.global_position
+    bullet.fire(global_transform.x)
+    get_tree().root.add_child(bullet)
+    _timer.start(time_between_shots)
+
+func _process(_dt: float):
+    if Input.is_action_pressed("shoot") and _timer.time_left == 0:
+        fire()
 
 func _ready():
-    if bullet == null:
+    if bullet_scene == null:
         push_error("no bullet has been assigned to weapon %s" % self.name)
-    $FireTimer.start(time_between_shots)
-
-func _on_FireTimer_timeout():
-    if Input.is_action_pressed("shoot"):
-        fire()

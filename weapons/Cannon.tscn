@@ -4,7 +4,7 @@
 [ext_resource path="res://bullets/LargeBullet.tscn" type="PackedScene" id=2]
 
 [node name="Cannon" instance=ExtResource( 1 )]
-bullet = ExtResource( 2 )
+bullet_scene = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
 frame = 43
