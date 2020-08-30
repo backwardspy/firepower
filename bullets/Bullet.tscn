@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.22443
 
-[node name="Bullet" type="KinematicBody2D"]
+[node name="Bullet" type="Area2D"]
 collision_layer = 0
 script = ExtResource( 2 )
 
@@ -26,3 +26,4 @@ texture = ExtResource( 1 )
 vframes = 8
 hframes = 8
 frame = 48
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

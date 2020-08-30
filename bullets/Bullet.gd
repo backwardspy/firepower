@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 class_name Bullet
 
@@ -12,13 +12,14 @@ func fire(direction: Vector2):
     _direction = direction.normalized()
 
 func _process(dt: float):
-    var coll := move_and_collide(_direction * speed * dt)
-    if coll is KinematicCollision2D and coll.collider is Node:
-        var is_mob: bool = coll.collider.is_in_group("mobs")
-        if is_mob:
-            (coll.collider as Mob).hurt(damage, _direction)
+    translate(_direction * speed * dt)
 
-        # break_on_hit only applies to mob collisions
-        # everything else breaks regardless
-        if break_on_hit or not is_mob:
-            queue_free()
+func _on_Bullet_body_entered(body: Node):
+    var is_mob: bool = body.is_in_group("mobs")
+    if is_mob:
+        (body as Mob).hurt(damage, _direction)
+
+    # break_on_hit only applies to mob collisions
+    # everything else breaks regardless
+    if break_on_hit or not is_mob:
+        queue_free()
