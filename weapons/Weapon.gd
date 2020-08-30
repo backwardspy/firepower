@@ -6,6 +6,7 @@ export var time_between_shots := 0.2
 onready var _timer := $FireTimer
 
 func fire():
+    $AudioPlayer.play()
     var bullet: Bullet = bullet_scene.instance()
     bullet.position = $MuzzlePoint.global_position
     bullet.fire(global_transform.x)

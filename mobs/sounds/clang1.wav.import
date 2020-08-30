@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/clang1.wav-d2418d992248098d64b59b899d124eed.sample"
+
+[deps]
+
+source_file="res://mobs/sounds/clang1.wav"
+dest_files=[ "res://.import/clang1.wav-d2418d992248098d64b59b899d124eed.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

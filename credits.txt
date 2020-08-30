@@ -1,0 +1,12 @@
+# weapon sounds
+* Michel Baradari
+  * https://opengameart.org/content/chaingun-pistol-rifle-shotgun-shots
+  * https://opengameart.org/content/4-projectile-launches
+
+# environmental sounds
+* qubodup
+  * https://opengameart.org/content/metal-clang-explosions-zing
+
+# music
+* cynicmusic
+  * https://opengameart.org/content/hyperflight-racing

@@ -13,7 +13,7 @@ damage = 30.0
 shape = SubResource( 1 )
 
 [node name="Shadow" parent="." index="1"]
-frame = 57
+frame = 49
 
 [node name="Sprite" parent="." index="2"]
 frame = 49

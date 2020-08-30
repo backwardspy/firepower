@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://weapons/MachineGun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites.png" type="Texture" id=2]
 [ext_resource path="res://bullets/BladeBullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/sounds/bladelaunch.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "blade-spin"
@@ -23,22 +24,28 @@ tracks/0/keys = {
 
 [node name="BladeLauncher" instance=ExtResource( 1 )]
 bullet_scene = ExtResource( 3 )
-time_between_shots = 0.5
+time_between_shots = 0.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 autoplay = "blade-spin"
 anims/blade-spin = SubResource( 1 )
 
-[node name="Sprite" parent="." index="1"]
+[node name="Shadow" parent="." index="1"]
 frame = 44
 
-[node name="Blade" type="Sprite" parent="." index="2"]
+[node name="Sprite" parent="." index="2"]
+frame = 44
+
+[node name="Blade" type="Sprite" parent="." index="3"]
 position = Vector2( -1.5, 0 )
-rotation = 0.579477
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
 frame = 50
 
-[node name="MuzzlePoint" parent="." index="3"]
+[node name="MuzzlePoint" parent="." index="4"]
 position = Vector2( -1.5, 0 )
+
+[node name="AudioPlayer" parent="." index="6"]
+stream = ExtResource( 4 )
+volume_db = -10.0
