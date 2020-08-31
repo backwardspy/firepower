@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 class_name MobBullet
 
@@ -11,6 +11,11 @@ func fire(direction: Vector2):
     _direction = direction.normalized()
 
 func _process(dt: float):
-    var coll := move_and_collide(_direction * speed * dt)
-    if coll:
-        queue_free()
+    translate(_direction * speed * dt)
+
+func _on_MobBullet_body_entered(body):
+    var is_player: bool = body.is_in_group("player")
+    if is_player:
+        (body as Player).hurt(damage)
+
+    queue_free()

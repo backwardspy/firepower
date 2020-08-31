@@ -10,7 +10,7 @@ func fire():
     var bullet: Bullet = bullet_scene.instance()
     bullet.position = $MuzzlePoint.global_position
     bullet.fire(global_transform.x)
-    get_tree().root.add_child(bullet)
+    get_tree().current_scene.add_child(bullet)
     _timer.start(time_between_shots)
 
 func _process(_dt: float):

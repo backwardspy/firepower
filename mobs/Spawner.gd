@@ -11,4 +11,4 @@ func spawn():
     var mob: Mob = mob_scene.instance()
     mob.set_player(_player)
     mob.position = spawn_point.position
-    get_tree().root.add_child(mob)
+    get_tree().current_scene.add_child(mob)

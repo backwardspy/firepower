@@ -7,8 +7,10 @@ signal health_changed
 export var bounds := Rect2(-220, -220, 220, 220)
 export var speed := 300.0
 export var max_health := 100.0
+export var max_loot_drop := 20
 export var shoot_range := 200.0
 export var bullet_scene: PackedScene
+export var scrap_scene: PackedScene
 
 onready var _invuln_timer := $InvulnTimer
 onready var _health := max_health
@@ -26,7 +28,7 @@ func hurt(damage: float, direction: Vector2):
     if _invuln or _exploding:
         return
 
-    _vel += direction * 20.0
+    _vel += direction * 100.0
 
     $DamageNumberSpawner.fire(int(damage))
 
@@ -40,12 +42,23 @@ func hurt(damage: float, direction: Vector2):
 
     emit_signal("health_changed", _health / max_health)
 
+func _spawn_loot():
+    var loot_amount := randi() % max_loot_drop
+    for i in loot_amount:
+        var scrap: StaticBody2D = scrap_scene.instance()
+        var dir := Vector2.RIGHT.rotated(rand_range(0, 2 * PI)) * rand_range(1, 50)
+        scrap.position = global_position + dir
+        get_tree().current_scene.add_child(scrap)
+
 func _die():
     _health = 0
     _exploding = true
     $ShootTimer.stop()
     $AnimationPlayer.play("explode")
     $AudioStreamPlayer.play()
+
+    call_deferred("_spawn_loot")
+
     yield($AudioStreamPlayer, "finished")
     queue_free()
 
@@ -85,7 +98,7 @@ func _on_ShootTimer_timeout():
     var bullet: MobBullet = bullet_scene.instance()
     bullet.position = global_position + to_player.normalized() * 16
     bullet.fire(to_player)
-    get_tree().root.add_child(bullet)
+    get_tree().current_scene.add_child(bullet)
 
 func _on_InvulnTimer_timeout():
     $Sprite.modulate = Color.white

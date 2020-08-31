@@ -24,22 +24,34 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://mobs/Mob.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Area2D",
 "class": "MobBullet",
 "language": "GDScript",
 "path": "res://mobs/MobBullet.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/Player.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Scrap",
+"language": "GDScript",
+"path": "res://scrap/Scrap.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
 "DamageNumber": "",
 "Mob": "",
-"MobBullet": ""
+"MobBullet": "",
+"Player": "",
+"Scrap": ""
 }
 
 [application]
 
 config/name="firepower"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://states/Menu.tscn"
 config/icon="res://icon.png"
 
 [input]
@@ -69,6 +81,11 @@ shoot={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[physics]
+
+2d/default_gravity=0
+2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 
