@@ -15,6 +15,10 @@ export var scrap_scene: PackedScene
 onready var _invuln_timer := $InvulnTimer
 onready var _health := max_health
 
+onready var _modulate = $Sprite.modulate
+
+const HURT_MODULATE = Color(8.0, 3.2, 3.2)
+
 var _targetPos := Vector2.ZERO
 var _vel := Vector2.ZERO
 var _player: Node2D = null
@@ -36,7 +40,7 @@ func hurt(damage: float, direction: Vector2):
     if _health <= 0:
         _die()
     else:
-        $Sprite.modulate = Color(2.0, 0.8, 0.8)
+        $Sprite.modulate = HURT_MODULATE
         _invuln = true
         $InvulnTimer.start()
 
@@ -53,6 +57,7 @@ func _spawn_loot():
 func _die():
     _health = 0
     _exploding = true
+
     $ShootTimer.stop()
     $AnimationPlayer.play("explode")
     $AudioStreamPlayer.play()
@@ -101,5 +106,5 @@ func _on_ShootTimer_timeout():
     get_tree().current_scene.add_child(bullet)
 
 func _on_InvulnTimer_timeout():
-    $Sprite.modulate = Color.white
+    $Sprite.modulate = _modulate
     _invuln = false

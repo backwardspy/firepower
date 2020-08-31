@@ -44,6 +44,7 @@ hframes = 8
 frame = 13
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 3, 3, 3, 1 )
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 8

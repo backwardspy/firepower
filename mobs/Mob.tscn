@@ -30,10 +30,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 2, 2, 2, 1 ), Color( 8, 8, 8, 1 ), Color( 8, 8, 8, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Shadow:modulate")
@@ -87,6 +87,7 @@ hframes = 8
 frame = 5
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 2, 2, 2, 1 )
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 8
@@ -103,7 +104,11 @@ one_shot = true
 travel = Vector2( 0, -100 )
 duration = 1.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
 [node name="HealthBar" type="TextureProgress" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
 margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
@@ -123,9 +128,6 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="HealthBar"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 6 )
 [connection signal="health_changed" from="." to="HealthBar" method="_on_Mob_health_changed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]

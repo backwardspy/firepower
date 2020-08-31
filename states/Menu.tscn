@@ -39,5 +39,5 @@ margin_right = 41.0
 margin_bottom = 32.0
 text = "Quit"
 [connection signal="pressed" from="GridContainer/StartGame" to="." method="start_game"]
-[connection signal="pressed" from="GridContainer/QuitGame" to="." method="quit_game"]
 [connection signal="pressed" from="GridContainer/QuitGame" to="." method="start_game"]
+[connection signal="pressed" from="GridContainer/QuitGame" to="." method="quit_game"]
