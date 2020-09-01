@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://states/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://ui/menu/letters/r.png" type="Texture" id=3]
+[ext_resource path="res://ui/menu/letters/o.png" type="Texture" id=4]
+[ext_resource path="res://ui/menu/letters/w.png" type="Texture" id=5]
+[ext_resource path="res://ui/menu/letters/f.png" type="Texture" id=6]
+[ext_resource path="res://ui/menu/letters/i.png" type="Texture" id=7]
+[ext_resource path="res://ui/menu/letters/e.png" type="Texture" id=8]
+[ext_resource path="res://ui/menu/letters/p.png" type="Texture" id=9]
+[ext_resource path="res://ui/menu/TitleBob.gd" type="Script" id=10]
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -15,7 +23,73 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="Title" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = 63.0
+margin_right = 88.0
+alignment = 1
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="F" type="TextureRect" parent="Title"]
+margin_right = 16.0
+margin_bottom = 237.0
+texture = ExtResource( 6 )
+
+[node name="I" type="TextureRect" parent="Title"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 237.0
+texture = ExtResource( 7 )
+
+[node name="R" type="TextureRect" parent="Title"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 237.0
+texture = ExtResource( 3 )
+
+[node name="E" type="TextureRect" parent="Title"]
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 237.0
+texture = ExtResource( 8 )
+
+[node name="P" type="TextureRect" parent="Title"]
+margin_left = 80.0
+margin_right = 96.0
+margin_bottom = 237.0
+texture = ExtResource( 9 )
+
+[node name="O" type="TextureRect" parent="Title"]
+margin_left = 100.0
+margin_right = 116.0
+margin_bottom = 237.0
+texture = ExtResource( 4 )
+
+[node name="W" type="TextureRect" parent="Title"]
+margin_left = 120.0
+margin_right = 136.0
+margin_bottom = 237.0
+texture = ExtResource( 5 )
+
+[node name="E2" type="TextureRect" parent="Title"]
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 237.0
+texture = ExtResource( 8 )
+
+[node name="R2" type="TextureRect" parent="Title"]
+margin_left = 160.0
+margin_right = 176.0
+margin_bottom = 237.0
+texture = ExtResource( 3 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -24,20 +98,17 @@ margin_left = -20.5
 margin_top = -16.0
 margin_right = 20.5
 margin_bottom = 16.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="StartGame" type="Button" parent="GridContainer"]
+[node name="StartGame" type="Button" parent="Buttons"]
 margin_right = 41.0
 margin_bottom = 14.0
 text = "Start"
 
-[node name="QuitGame" type="Button" parent="GridContainer"]
+[node name="QuitGame" type="Button" parent="Buttons"]
 margin_top = 18.0
 margin_right = 41.0
 margin_bottom = 32.0
 text = "Quit"
-[connection signal="pressed" from="GridContainer/StartGame" to="." method="start_game"]
-[connection signal="pressed" from="GridContainer/QuitGame" to="." method="start_game"]
-[connection signal="pressed" from="GridContainer/QuitGame" to="." method="quit_game"]
+[connection signal="pressed" from="Buttons/StartGame" to="." method="start_game"]
+[connection signal="pressed" from="Buttons/QuitGame" to="." method="quit_game"]
+[connection signal="pressed" from="Buttons/QuitGame" to="." method="start_game"]
