@@ -11,7 +11,14 @@
 * qubodup
   * https://opengameart.org/content/metal-clang-explosions-zing
 
-# music
+# menu music
+* yd
+  * https://opengameart.org/content/factory-ambiance
+
+# idle music
+* Brandon Morris
+  * https://opengameart.org/content/loading-screen-loop
+
+# battle music
 * cynicmusic
   * https://opengameart.org/content/hyperflight-racing
-

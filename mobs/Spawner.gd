@@ -3,8 +3,9 @@ extends Node
 signal wave_ended
 signal wave_started
 
-export var base_mobs_per_wave := 10
+export var base_mobs_per_wave := 5
 export var mobs_per_difficulty := 2.0
+export var mobs_per_difficulty_exp := 1.25
 export var min_spawn_per_second := 0.5
 export var max_spawn_per_second := 2.0
 export var spawn_rate_per_wave := 0.1
@@ -26,9 +27,15 @@ var _spawned_this_wave := 0
 var _died_this_wave := 0
 
 func _calc_max_mobs():
-    return base_mobs_per_wave + int(_wave_difficulty * mobs_per_difficulty)
+    return (
+        base_mobs_per_wave +
+        int((_wave_difficulty - 1) * mobs_per_difficulty) +
+        int(pow(mobs_per_difficulty_exp, _wave_difficulty) - 1)
+    )
 
 func _new_wave(difficulty: int):
+    emit_signal("wave_started", _wave_difficulty)
+
     _wave_difficulty = difficulty
     _spawn_per_second = lerp(
         min_spawn_per_second,
@@ -43,8 +50,6 @@ func _new_wave(difficulty: int):
     _died_this_wave = 0
 
     _spawn_timer.start(1.0 / _spawn_per_second)
-
-    emit_signal("wave_started", _wave_difficulty)
 
 func _end_wave():
     emit_signal("wave_ended")

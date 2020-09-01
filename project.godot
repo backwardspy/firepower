@@ -54,6 +54,10 @@ config/name="firepower"
 run/main_scene="res://states/Menu.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+
 [input]
 
 up={
