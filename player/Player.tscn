@@ -1,12 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sprites.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://weapons/MachineGun.tscn" type="PackedScene" id=3]
-[ext_resource path="res://weapons/LeftMachineGun.tscn" type="PackedScene" id=4]
-[ext_resource path="res://weapons/RightMachineGun.tscn" type="PackedScene" id=5]
-[ext_resource path="res://weapons/Cannon.tscn" type="PackedScene" id=6]
-[ext_resource path="res://weapons/BladeLauncher.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.97211
@@ -88,6 +84,7 @@ modulate = Color( 2, 2, 2, 1 )
 collision_layer = 6
 collision_mask = 2147483649
 script = ExtResource( 2 )
+max_health = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -126,36 +123,27 @@ hframes = 8
 [node name="Center" type="Position2D" parent="Hub/HeavySlots"]
 position = Vector2( 8.5, 0 )
 
-[node name="BladeLauncher" parent="Hub/HeavySlots/Center" instance=ExtResource( 7 )]
-
 [node name="MediumSlots" type="Node2D" parent="Hub"]
 
 [node name="Left" type="Position2D" parent="Hub/MediumSlots"]
 position = Vector2( 3.5, -11.5 )
 
-[node name="Cannon" parent="Hub/MediumSlots/Left" instance=ExtResource( 6 )]
-time_between_shots = 0.5
-
 [node name="Right" type="Position2D" parent="Hub/MediumSlots"]
 position = Vector2( 3.5, 11.5 )
-
-[node name="Cannon" parent="Hub/MediumSlots/Right" instance=ExtResource( 6 )]
-time_between_shots = 0.5
 
 [node name="LightSlots" type="Node2D" parent="Hub"]
 
 [node name="Left" type="Position2D" parent="Hub/LightSlots"]
 position = Vector2( -1.5, -6 )
-
-[node name="MachineGun" parent="Hub/LightSlots/Left" instance=ExtResource( 4 )]
+rotation = -0.0523599
 
 [node name="Center" type="Position2D" parent="Hub/LightSlots"]
 position = Vector2( 1.5, 0 )
 
 [node name="MachineGun" parent="Hub/LightSlots/Center" instance=ExtResource( 3 )]
+time_between_shots = 0.2
 
 [node name="Right" type="Position2D" parent="Hub/LightSlots"]
 position = Vector2( -1.5, 6 )
-
-[node name="MachineGun" parent="Hub/LightSlots/Right" instance=ExtResource( 5 )]
+rotation = 0.0523599
 [connection signal="body_entered" from="LootSuccArea" to="." method="_on_LootSuccArea_body_entered"]

@@ -3,6 +3,7 @@ extends KinematicBody2D
 class_name Mob
 
 signal health_changed
+signal died
 
 export var bounds := Rect2(-220, -220, 220, 220)
 export var speed := 300.0
@@ -63,6 +64,8 @@ func _die():
     $AudioStreamPlayer.play()
 
     call_deferred("_spawn_loot")
+
+    emit_signal("died")
 
     yield($AudioStreamPlayer, "finished")
     queue_free()

@@ -22,6 +22,10 @@ func hurt(damage: float):
 
     emit_signal("health_changed", _health / max_health)
 
+func heal(healing: float):
+    _health = min(_health + healing, max_health)
+    emit_signal("health_changed", _health / max_health)
+
 func _add_scrap():
     _scrap += 1
 
@@ -50,3 +54,6 @@ func _on_LootSuccArea_body_entered(body):
     if body is Scrap:
         body.succ(self)
         _add_scrap()
+
+func _on_Spawner_wave_ended():
+    heal(max_health * 0.5)
