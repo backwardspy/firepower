@@ -44,7 +44,7 @@ func _apply_fire_rate_upgrade(upgrade: Upgrade):
     if slot.get_child_count() != 1:
         push_error(
             "An upgrade asked for slot %s to have its fire rate changed but that slot has the wrong number of children" % [
-                upgrade.weapon_slot
+                upgrade.weapon_path
             ]
         )
         return
