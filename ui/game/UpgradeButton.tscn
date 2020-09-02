@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/game/UpgradeButton.gd" type="Script" id=3]
+[ext_resource path="res://sprites.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 112, 48, 16, 16 )
+
+[node name="UpgradeButton" type="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -907.0
+margin_bottom = -527.0
+rect_min_size = Vector2( 117, 73 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Box"]
+modulate = Color( 1, 1, 0, 1 )
+margin_right = 109.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 2 )
+text = "Upgrade Title"
+align = 1
+
+[node name="Description" type="Label" parent="Box"]
+margin_top = 16.0
+margin_right = 109.0
+margin_bottom = 46.0
+rect_clip_content = true
+text = "A long-form description of the upgrade goes here."
+autowrap = true
+
+[node name="CostBox" type="HBoxContainer" parent="Box"]
+margin_top = 50.0
+margin_right = 109.0
+margin_bottom = 66.0
+alignment = 2
+
+[node name="Price" type="Label" parent="Box/CostBox"]
+margin_left = 61.0
+margin_top = 4.0
+margin_right = 89.0
+margin_bottom = 12.0
+text = "6502"
+
+[node name="ScrapIcon" type="TextureRect" parent="Box/CostBox"]
+margin_left = 93.0
+margin_right = 109.0
+margin_bottom = 16.0
+texture = SubResource( 1 )

@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [node name="BladeLauncher" instance=ExtResource( 1 )]
 bullet_scene = ExtResource( 3 )
-time_between_shots = 0.8
+time_between_shots = 1.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 autoplay = "blade-spin"

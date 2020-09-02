@@ -38,6 +38,26 @@ _global_script_classes=[ {
 "class": "Scrap",
 "language": "GDScript",
 "path": "res://scrap/Scrap.gd"
+}, {
+"base": "Reference",
+"class": "Upgrade",
+"language": "GDScript",
+"path": "res://upgrades/Upgrade.gd"
+}, {
+"base": "Button",
+"class": "UpgradeButton",
+"language": "GDScript",
+"path": "res://ui/game/UpgradeButton.gd"
+}, {
+"base": "Node",
+"class": "UpgradeManager",
+"language": "GDScript",
+"path": "res://upgrades/UpgradeManager.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
@@ -45,7 +65,11 @@ _global_script_class_icons={
 "Mob": "",
 "MobBullet": "",
 "Player": "",
-"Scrap": ""
+"Scrap": "",
+"Upgrade": "",
+"UpgradeButton": "",
+"UpgradeManager": "",
+"Weapon": ""
 }
 
 [application]
@@ -53,6 +77,10 @@ _global_script_class_icons={
 config/name="firepower"
 run/main_scene="res://states/Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Wallet="*res://player/Wallet.gd"
 
 [display]
 

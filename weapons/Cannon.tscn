@@ -6,6 +6,7 @@
 
 [node name="Cannon" instance=ExtResource( 1 )]
 bullet_scene = ExtResource( 2 )
+time_between_shots = 0.8
 
 [node name="Shadow" parent="." index="0"]
 frame = 43

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Weapon
+
 export var bullet_scene: PackedScene
 export var time_between_shots := 0.2
 

@@ -16,6 +16,6 @@ func _process(dt: float):
 func _on_MobBullet_body_entered(body):
     var is_player: bool = body.is_in_group("player")
     if is_player:
-        (body as Player).hurt(damage)
+        body.hurt(damage)
 
     queue_free()

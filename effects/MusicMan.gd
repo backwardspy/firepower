@@ -11,10 +11,11 @@ onready var _normal_battle_vol := _battle_music.volume_db
 onready var _normal_idle_vol := _idle_music.volume_db
 
 func _fade(from: AudioStreamPlayer, to: AudioStreamPlayer):
+    var _b := _tween.stop_all()
     to.volume_db = silent
     from.volume_db = _normal_idle_vol
     to.play()
-    _tween.interpolate_property(
+    _b = _tween.interpolate_property(
         to,
         "volume_db",
         silent,
@@ -23,7 +24,7 @@ func _fade(from: AudioStreamPlayer, to: AudioStreamPlayer):
         Tween.TRANS_EXPO,
         Tween.EASE_OUT
     )
-    _tween.interpolate_property(
+    _b = _tween.interpolate_property(
         from,
         "volume_db",
         _normal_idle_vol,
@@ -32,7 +33,7 @@ func _fade(from: AudioStreamPlayer, to: AudioStreamPlayer):
         Tween.TRANS_EXPO,
         Tween.EASE_IN
     )
-    _tween.start()
+    _b = _tween.start()
     yield(_tween, "tween_all_completed")
     from.stop()
 
@@ -43,6 +44,3 @@ func to_battle(_unused = 0):
 
 func to_idle(_unused = 0):
     _fade(_battle_music, _idle_music)
-
-func _process(dt: float):
-    print(_battle_music.volume_db, " ", _idle_music.volume_db)

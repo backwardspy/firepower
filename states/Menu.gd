@@ -29,7 +29,9 @@ func start_game():
 
     _tween.start()
     yield(_tween, "tween_all_completed")
-    get_tree().change_scene("res://states/Game.tscn")
+    var err = get_tree().change_scene("res://states/Game.tscn")
+    if err:
+        push_error("failed to load game scene: %s" % err)
 
 func quit_game():
     get_tree().quit()

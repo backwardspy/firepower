@@ -34,8 +34,6 @@ func _calc_max_mobs():
     )
 
 func _new_wave(difficulty: int):
-    emit_signal("wave_started", _wave_difficulty)
-
     _wave_difficulty = difficulty
     _spawn_per_second = lerp(
         min_spawn_per_second,
@@ -51,10 +49,11 @@ func _new_wave(difficulty: int):
 
     _spawn_timer.start(1.0 / _spawn_per_second)
 
+    emit_signal("wave_started", _wave_difficulty)
+
 func _end_wave():
     emit_signal("wave_ended")
-
-    _upgrade_shop.visible = true
+    _upgrade_shop.show()
 
 func _on_mob_death():
     _died_this_wave += 1
@@ -71,7 +70,10 @@ func spawn():
     mob.set_player(_player)
     mob.position = spawn_point.position
 
-    mob.connect("died", self, "_on_mob_death")
+    var err := mob.connect("died", self, "_on_mob_death")
+    if err:
+        push_error("failed to connect mob died signal: %s" % err)
+        return
 
     get_tree().current_scene.add_child(mob)
 
@@ -80,10 +82,10 @@ func spawn():
 func _ready():
     _new_wave(1)
 
-func _on_UpgradeShop_upgrade_purchased():
-    _upgrade_shop.visible = false
+func _on_UpgradeShop_upgrade_purchased(_upgrade: Upgrade):
+    _upgrade_shop.hide()
     _new_wave(_wave_difficulty + 1)
 
 func _on_UpgradeShop_wave_repeated():
-    _upgrade_shop.visible = false
+    _upgrade_shop.hide()
     _new_wave(_wave_difficulty)
