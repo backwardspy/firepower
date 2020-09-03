@@ -28,7 +28,10 @@ func _on_upgrade_chosen(upgrade: Upgrade):
 
     _bought_slugs.append(upgrade.slug)
     _upgrade_man.burn_upgrade(upgrade)
-    emit_signal("upgrade_purchased", upgrade)
+
+    var final := not _upgrade_man.any_upgrades_left()
+
+    emit_signal("upgrade_purchased", upgrade, final)
 
 func show():
     for child in $UpgradeButtons.get_children():

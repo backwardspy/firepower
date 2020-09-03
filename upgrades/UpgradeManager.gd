@@ -119,3 +119,6 @@ func get_next_upgrades(count: int) -> Array:
 
 func burn_upgrade(upgrade: Upgrade):
     _upgrades.erase(upgrade)
+
+func any_upgrades_left() -> bool:
+    return _upgrades.size() > 0

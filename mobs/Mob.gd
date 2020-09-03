@@ -28,6 +28,9 @@ var _exploding := false
 
 func set_player(player: Node2D):
     _player = player
+    var err := _player.connect("died", self, "_on_player_death")
+    if err:
+        push_error("failed to connect player died signal: %s" % err)
 
 func hurt(damage: float, direction: Vector2):
     if _invuln or _exploding:
@@ -46,6 +49,9 @@ func hurt(damage: float, direction: Vector2):
         $InvulnTimer.start()
 
     emit_signal("health_changed", _health / max_health)
+
+func _on_player_death():
+    $ShootTimer.stop()
 
 func _spawn_loot():
     var loot_amount := randi() % max_loot_drop

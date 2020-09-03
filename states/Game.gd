@@ -1,6 +1,25 @@
 extends Node2D
 
+onready var _score_tracker: ScoreTracker = get_node("/root/ScoreTracker")
+onready var _blackout: ColorRect = $UI/Blackout
+onready var _tween: Tween = $Tween
+
 func handle_player_death():
+    $MusicMan.fade_out()
+
+    _blackout.visible = true
+    var _r := _tween.interpolate_property(
+        _blackout,
+        "color:a",
+        0,
+        1,
+        3,
+        Tween.TRANS_LINEAR,
+        Tween.EASE_IN
+    )
+    _r = _tween.start()
+    yield(_tween, "tween_all_completed")
+
     var err := get_tree().change_scene("res://states/GameOver.tscn")
     if err:
         push_error("failed to change to game over scene: %s" % err)

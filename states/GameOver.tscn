@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://states/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -15,40 +17,63 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ControlsBox" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -27.5
-margin_top = -22.0
-margin_right = 27.5
-margin_bottom = 22.0
+margin_left = -38.5
+margin_top = -36.0
+margin_right = 38.5
+margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="GridContainer"]
-margin_right = 55.0
-margin_bottom = 8.0
+[node name="YouDied" type="Label" parent="ControlsBox"]
+margin_right = 77.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
 text = "You Died..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Retry" type="Button" parent="GridContainer"]
-margin_top = 12.0
-margin_right = 55.0
-margin_bottom = 26.0
+[node name="ScrapEarned" type="Label" parent="ControlsBox"]
+margin_top = 16.0
+margin_right = 77.0
+margin_bottom = 24.0
+text = "Scrap: 6502"
+
+[node name="MobsKilled" type="Label" parent="ControlsBox"]
+margin_top = 28.0
+margin_right = 77.0
+margin_bottom = 36.0
+text = "Kills: 256"
+
+[node name="Retry" type="Button" parent="ControlsBox"]
+margin_top = 40.0
+margin_right = 77.0
+margin_bottom = 54.0
 text = "Retry"
 
-[node name="QuitToMenu" type="Button" parent="GridContainer"]
-margin_top = 30.0
-margin_right = 55.0
-margin_bottom = 44.0
+[node name="QuitToMenu" type="Button" parent="ControlsBox"]
+margin_top = 58.0
+margin_right = 77.0
+margin_bottom = 72.0
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="GridContainer/Retry" to="." method="retry"]
-[connection signal="pressed" from="GridContainer/QuitToMenu" to="." method="menu"]
+
+[node name="Fadein" parent="." instance=ExtResource( 4 )]
+
+[node name="Blackout" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+[connection signal="pressed" from="ControlsBox/Retry" to="." method="retry"]
+[connection signal="pressed" from="ControlsBox/QuitToMenu" to="." method="menu"]

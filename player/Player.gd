@@ -9,21 +9,43 @@ export var move_speed := 100.0
 export var max_health := 500.0
 
 var _vel := Vector2.ZERO
+var _dead := false
 
 onready var _health := max_health
 onready var _wallet: Wallet = get_node("/root/Wallet")
+onready var _score_tracker: ScoreTracker = get_node("/root/ScoreTracker")
 
 func hurt(damage: float):
+    if _dead:
+        return
+
     _health -= damage
     if _health <= 0.0:
-        _health = 0.0
-        emit_signal("died")
+        _die()
 
     emit_signal("health_changed", _health / max_health)
 
 func heal(healing: float):
+    if _dead:
+        return
+
     _health = min(_health + healing, max_health)
     emit_signal("health_changed", _health / max_health)
+
+func _die():
+    _health = 0.0
+    _dead = true
+    emit_signal("died")
+    modulate = Color(8, 7, 6, 1)
+    $Boombox.play()
+    $AnimationPlayer.play("explosion")
+    $CollisionShape2D.queue_free()
+    $LootSuccArea.queue_free()
+    $Shadow.queue_free()
+    $Hub/HeavySlots.queue_free()
+    $Hub/MediumSlots.queue_free()
+    $Hub/LightSlots.queue_free()
+    set_process(false)
 
 func _apply_new_weapon_upgrade(upgrade: Upgrade):
     var slot := get_node(upgrade.weapon_path)
@@ -73,13 +95,16 @@ func _move(dt: float):
     $Shadow.rotation = $Hub.rotation
 
 func _process(dt: float):
+    if _dead:
+        return
     _move(dt)
 
 func _on_LootSuccArea_body_entered(body):
     if body is Scrap:
         body.succ(self)
         _wallet.add_scrap(1)
+        _score_tracker.add_scrap_earned(1)
 
-func _on_UpgradeShop_upgrade_purchased(upgrade: Upgrade):
+func _on_UpgradeShop_upgrade_purchased(upgrade: Upgrade, _final: bool):
     _apply_upgrade(upgrade)
     heal(max_health * 0.5)

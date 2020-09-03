@@ -17,7 +17,9 @@ onready var _spawn_points := get_children()
 onready var _player := get_node(player_path)
 onready var _upgrade_shop: CanvasItem = get_node(upgrade_shop_path)
 onready var _spawn_timer: Timer = get_node("../SpawnTimer")
+onready var _score_tracker: ScoreTracker = get_node("/root/ScoreTracker")
 
+var _endless_mode := false
 var _wave_difficulty := 1
 
 var _max_mobs := 0
@@ -51,18 +53,31 @@ func _new_wave(difficulty: int):
 
     emit_signal("wave_started", _wave_difficulty)
 
+func _endless_wave():
+    _endless_mode = true
+    _spawn_per_second = max_spawn_per_second
+
+    print("starting endless wave with %s spawns/s" % _spawn_per_second)
+
+    _spawned_this_wave = 0
+    _died_this_wave = 0
+    _spawn_timer.start(1.0 / _spawn_per_second)
+
+    emit_signal("wave_started", -1)
+
 func _end_wave():
     emit_signal("wave_ended")
     _upgrade_shop.show()
 
 func _on_mob_death():
     _died_this_wave += 1
+    _score_tracker.add_mob_kill()
 
-    if _died_this_wave >= _max_mobs:
+    if not _endless_mode and _died_this_wave >= _max_mobs:
         _end_wave()
 
 func spawn():
-    if _spawned_this_wave >= _max_mobs:
+    if not _endless_mode and _spawned_this_wave >= _max_mobs:
         return
 
     var spawn_point: Position2D = _spawn_points[randi() % _spawn_points.size()]
@@ -82,9 +97,13 @@ func spawn():
 func _ready():
     _new_wave(1)
 
-func _on_UpgradeShop_upgrade_purchased(_upgrade: Upgrade):
+func _on_UpgradeShop_upgrade_purchased(_upgrade: Upgrade, final: bool):
     _upgrade_shop.hide()
-    _new_wave(_wave_difficulty + 1)
+
+    if final:
+        _endless_wave()
+    else:
+        _new_wave(_wave_difficulty + 1)
 
 func _on_UpgradeShop_wave_repeated():
     _upgrade_shop.hide()
