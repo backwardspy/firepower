@@ -20,3 +20,6 @@ func has_enough_for(amount: int) -> bool:
 
 func get_balance() -> int:
     return _scrap
+
+func empty():
+    _scrap = 0

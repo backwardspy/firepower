@@ -62,6 +62,7 @@ func _die():
     $ShootTimer.stop()
     $AnimationPlayer.play("explode")
     $AudioStreamPlayer.play()
+    $CollisionShape2D.disabled = true
 
     call_deferred("_spawn_loot")
 

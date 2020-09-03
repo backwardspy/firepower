@@ -7,6 +7,7 @@ func handle_player_death():
 
 func _ready():
     randomize()
+    get_node("/root/Wallet").empty()
 
 func _on_Player_died():
     call_deferred("handle_player_death")
