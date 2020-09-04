@@ -13,17 +13,30 @@ func _disable():
     disabled = true
     $CostBox/Price.modulate = Color.red
 
+func _update_mode():
+    $CostBox/ScrapIcon.visible = _reqs_met
+
+    $CostBox.alignment = BoxContainer.ALIGN_END if _reqs_met else BoxContainer.ALIGN_CENTER
+
+    var price_text: String
+    if _reqs_met:
+        price_text = str(_upgrade.price)
+    else:
+        price_text = "weapon not mounted"
+    $CostBox/Price.text = price_text
+
 func apply_upgrade(upgrade: Upgrade, wallet_balance: int, reqs_met: bool):
     _upgrade = upgrade
     _reqs_met = reqs_met
     $Box/Title.text = upgrade.title
     $Box/Description.text = upgrade.description
-    $CostBox/Price.text = str(upgrade.price)
 
     if not reqs_met:
         _disable()
     else:
         check_scrap_adequacy(wallet_balance)
+
+    _update_mode()
 
 func check_scrap_adequacy(wallet_balance: int):
     if not _reqs_met:

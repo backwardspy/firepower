@@ -4,15 +4,6 @@ class_name UpgradeManager
 
 var _upgrades := [
     Upgrade.new().init(
-        Upgrade.NEW_WEAPON,
-        "left-mg",
-        "Add a second machine gun to your loadout",
-        80,
-        "Hub/LightSlots/Left"
-    ).set_new_weapon_vars(
-        preload("res://weapons/LeftMachineGun.tscn")
-    ),
-    Upgrade.new().init(
         Upgrade.FIRE_RATE_UP,
         "mg-rof",
         "Increase the fire rate of your machine gun",
@@ -23,9 +14,18 @@ var _upgrades := [
     ),
     Upgrade.new().init(
         Upgrade.NEW_WEAPON,
-        "right-mg",
-        "Add a third machine gun to your loadout",
+        "left-mg",
+        "Add a left-mounted machine gun to your loadout",
         80,
+        "Hub/LightSlots/Left"
+    ).set_new_weapon_vars(
+        preload("res://weapons/LeftMachineGun.tscn")
+    ),
+    Upgrade.new().init(
+        Upgrade.NEW_WEAPON,
+        "right-mg",
+        "Add a right-mounted machine gun to your loadout",
+        120,
         "Hub/LightSlots/Right"
     ).set_new_weapon_vars(
         preload("res://weapons/RightMachineGun.tscn")
@@ -34,7 +34,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "left-mg-rof",
         "Increase the fire rate of your left machine gun",
-        80,
+        100,
         "Hub/LightSlots/Left"
     ).set_fire_rate_up_vars(
         0.1
@@ -45,7 +45,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "right-mg-rof",
         "Increase the fire rate of your right machine gun",
-        80,
+        140,
         "Hub/LightSlots/Right"
     ).set_fire_rate_up_vars(
         0.1
@@ -55,7 +55,7 @@ var _upgrades := [
     Upgrade.new().init(
         Upgrade.NEW_WEAPON,
         "left-cannon",
-        "Add a high damage cannon to your loadout",
+        "Add a left-mounted cannon to your loadout",
         200,
         "Hub/MediumSlots/Left"
     ).set_new_weapon_vars(
@@ -64,7 +64,7 @@ var _upgrades := [
     Upgrade.new().init(
         Upgrade.NEW_WEAPON,
         "right-cannon",
-        "Add a second cannon to your loadout",
+        "Add a right-mounted cannon to your loadout",
         200,
         "Hub/MediumSlots/Right"
     ).set_new_weapon_vars(
