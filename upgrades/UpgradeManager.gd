@@ -16,7 +16,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "mg-rof",
         "Increase the fire rate of your machine gun",
-        30,
+        50,
         "Hub/LightSlots/Center"
     ).set_fire_rate_up_vars(
         0.1
@@ -34,7 +34,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "left-mg-rof",
         "Increase the fire rate of your left machine gun",
-        50,
+        80,
         "Hub/LightSlots/Left"
     ).set_fire_rate_up_vars(
         0.1
@@ -45,7 +45,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "right-mg-rof",
         "Increase the fire rate of your right machine gun",
-        50,
+        80,
         "Hub/LightSlots/Right"
     ).set_fire_rate_up_vars(
         0.1
@@ -56,7 +56,7 @@ var _upgrades := [
         Upgrade.NEW_WEAPON,
         "left-cannon",
         "Add a high damage cannon to your loadout",
-        100,
+        200,
         "Hub/MediumSlots/Left"
     ).set_new_weapon_vars(
         preload("res://weapons/Cannon.tscn")
@@ -65,7 +65,7 @@ var _upgrades := [
         Upgrade.NEW_WEAPON,
         "right-cannon",
         "Add a second cannon to your loadout",
-        100,
+        200,
         "Hub/MediumSlots/Right"
     ).set_new_weapon_vars(
         preload("res://weapons/Cannon.tscn")
@@ -74,7 +74,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "left-cannon-rof",
         "Increase the fire rate of your left cannon",
-        150,
+        250,
         "Hub/MediumSlots/Left"
     ).set_fire_rate_up_vars(
         0.5
@@ -85,7 +85,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "right-cannon-rof",
         "Increase the fire rate of your right cannon",
-        150,
+        250,
         "Hub/MediumSlots/Right"
     ).set_fire_rate_up_vars(
         0.5
@@ -96,7 +96,7 @@ var _upgrades := [
         Upgrade.NEW_WEAPON,
         "bladelauncher",
         "Add a sawblade launcher to your loadout",
-        200,
+        300,
         "Hub/HeavySlots/Center"
     ).set_new_weapon_vars(
         preload("res://weapons/BladeLauncher.tscn")
@@ -105,7 +105,7 @@ var _upgrades := [
         Upgrade.FIRE_RATE_UP,
         "bladelauncher-rof",
         "Increase the fire rate of your sawblade launcher",
-        250,
+        350,
         "Hub/HeavySlots/Center"
     ).set_fire_rate_up_vars(
         0.8

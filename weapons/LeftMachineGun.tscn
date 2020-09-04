@@ -3,6 +3,7 @@
 [ext_resource path="res://weapons/MachineGun.tscn" type="PackedScene" id=1]
 
 [node name="MachineGun" instance=ExtResource( 1 )]
+reduces_volume_on_add = true
 
 [node name="Shadow" parent="." index="0"]
 frame = 40

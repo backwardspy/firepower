@@ -31,5 +31,5 @@ func menu():
 
 func _ready():
     var scores: ScoreTracker = get_node("/root/ScoreTracker")
-    $ControlsBox/ScrapEarned.text = "Scrap: %s" % scores.get_scrap_earned()
-    $ControlsBox/MobsKilled.text = "Kills: %s" % scores.get_mobs_killed()
+    $ControlsBox/ScrapEarned.text = "You earned %s Scrap" % scores.get_scrap_earned()
+    $ControlsBox/MobsKilled.text = "You killed %s drones" % scores.get_mobs_killed()

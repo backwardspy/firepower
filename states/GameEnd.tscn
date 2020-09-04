@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://states/GameEnd.gd" type="Script" id=3]
+[ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/game_end/ScrapLabel.gd" type="Script" id=5]
+[ext_resource path="res://ui/game_end/KillsLabel.gd" type="Script" id=6]
+
+[node name="Root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -512.0
+margin_bottom = -300.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="GameTextBox" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -157.0
+margin_top = 38.0
+margin_right = 158.0
+margin_bottom = 234.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="GameTextBox"]
+margin_right = 315.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "Congratulations"
+autowrap = true
+
+[node name="TopText" type="Label" parent="GameTextBox"]
+margin_top = 16.0
+margin_right = 315.0
+margin_bottom = 112.0
+text = "You may not have survived indefinitely, but you did manage to slaughter a large number of mostly innocent drones and use their vital components to make yourself stronger.
+
+So, well done for that.
+
+You truly are The Greatest Machine.
+
+Your achievements:"
+autowrap = true
+
+[node name="ScrapLabel" type="Label" parent="GameTextBox"]
+margin_top = 116.0
+margin_right = 315.0
+margin_bottom = 124.0
+text = "You earned 6502 Scrap"
+autowrap = true
+script = ExtResource( 5 )
+
+[node name="KillsLabel" type="Label" parent="GameTextBox"]
+margin_top = 128.0
+margin_right = 315.0
+margin_bottom = 136.0
+text = "You killed 256 drones"
+autowrap = true
+script = ExtResource( 6 )
+
+[node name="MetaTextBox" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -157.0
+margin_top = 186.5
+margin_right = 158.0
+margin_bottom = 241.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thanks" type="Label" parent="MetaTextBox"]
+margin_right = 315.0
+margin_bottom = 41.0
+text = "Thanks for playing my game! I hope you enjoyed it.
+Don't forget to let me know what you think in the comments.
+
+~backwardspy"
+autowrap = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MetaTextBox"]
+margin_top = 45.0
+margin_right = 315.0
+margin_bottom = 54.0
+custom_colors/default_color = Color( 1, 1, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[url=https://backwardspy.itch.io/firepower]backwardspy.itch.io/firepower[/url]"
+text = "backwardspy.itch.io/firepower"
+fit_content_height = true
+
+[node name="MenuButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -45.0
+margin_top = -29.5
+margin_right = 45.0
+margin_bottom = -15.5
+text = "Return to Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fadein" parent="." instance=ExtResource( 4 )]
+
+[node name="Blackout" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="meta_clicked" from="MetaTextBox/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]

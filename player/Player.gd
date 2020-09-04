@@ -3,6 +3,7 @@ extends KinematicBody2D
 class_name Player
 
 signal health_changed
+signal weapon_added
 signal died
 
 export var move_speed := 100.0
@@ -10,6 +11,10 @@ export var max_health := 500.0
 
 var _vel := Vector2.ZERO
 var _dead := false
+
+# we keep track of how many weapons we've added in order to
+# reduce volume on new weapons by the correct amount
+var _weapons_added := 0
 
 onready var _health := max_health
 onready var _wallet: Wallet = get_node("/root/Wallet")
@@ -59,7 +64,21 @@ func _apply_new_weapon_upgrade(upgrade: Upgrade):
         return
 
     var weapon := upgrade.weapon_scene.instance()
+
+    var err := connect("weapon_added", weapon, "reduce_volume")
+    if err:
+        # we don't return here because it's hardly a fatal problem
+        push_error("failed to connect weapon_added signal to weapon: %s" % err)
     slot.add_child(weapon)
+
+    if weapon.reduces_volume_on_add:
+        if _weapons_added > 0:
+            # reduce volume on this weapon once per existing added weapon
+            weapon.reduce_volume(_weapons_added)
+        _weapons_added += 1
+
+        # reduce volume on all weapons once more
+        emit_signal("weapon_added")
 
 func _apply_fire_rate_upgrade(upgrade: Upgrade):
     var slot := get_node(upgrade.weapon_path)
