@@ -44,8 +44,6 @@ func _new_wave(difficulty: int):
     )
     _max_mobs = _calc_max_mobs()
 
-    print("starting wave of difficulty %s with %s mobs and %s spawns/s" % [_wave_difficulty, _max_mobs, _spawn_per_second])
-
     _spawned_this_wave = 0
     _died_this_wave = 0
 
@@ -56,8 +54,6 @@ func _new_wave(difficulty: int):
 func _endless_wave():
     _endless_mode = true
     _spawn_per_second = max_spawn_per_second
-
-    print("starting endless wave with %s spawns/s" % _spawn_per_second)
 
     _spawned_this_wave = 0
     _died_this_wave = 0

@@ -44,7 +44,6 @@ align = 1
 margin_top = 16.0
 margin_right = 109.0
 margin_bottom = 46.0
-rect_clip_content = true
 text = "A long-form description of the upgrade goes here."
 autowrap = true
 

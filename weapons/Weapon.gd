@@ -11,7 +11,6 @@ onready var _timer := $FireTimer
 func reduce_volume(times: int = 1):
     var old_vol: float = $AudioPlayer.volume_db
     $AudioPlayer.volume_db -= 3.0 * times
-    print("%s weapon volume reduced from %s to %s" % [self.name, old_vol, $AudioPlayer.volume_db])
 
 func fire():
     $AudioPlayer.play()

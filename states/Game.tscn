@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://music/TremLoadingloopl.ogg" type="AudioStream" id=14]
 [ext_resource path="res://effects/MusicMan.gd" type="Script" id=15]
 [ext_resource path="res://upgrades/UpgradeManager.tscn" type="PackedScene" id=16]
+[ext_resource path="res://player/BonusMan.gd" type="Script" id=17]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -103,6 +104,10 @@ region = Rect2( 96, 96, 16, 16 )
 atlas = ExtResource( 2 )
 region = Rect2( 112, 48, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 112, 48, 16, 16 )
+
 [node name="Root" type="Node2D"]
 modulate = Color( 0.498039, 0.498039, 0.498039, 1 )
 script = ExtResource( 5 )
@@ -126,6 +131,11 @@ volume_db = -5.0
 [node name="Tween" type="Tween" parent="MusicMan"]
 
 [node name="UpgradeManager" parent="." instance=ExtResource( 16 )]
+
+[node name="BonusMan" type="Node" parent="."]
+script = ExtResource( 17 )
+
+[node name="Timer" type="Timer" parent="BonusMan"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/wave-start = SubResource( 2 )
@@ -231,6 +241,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScrapBonusBox" type="HBoxContainer" parent="UI/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -93.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/ScrapBonusBox"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 7 )
+
+[node name="BonusLabel" type="Label" parent="UI/Control/ScrapBonusBox"]
+margin_left = 20.0
+margin_top = 4.0
+margin_right = 68.0
+margin_bottom = 12.0
+text = "Bonus: +0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WaveStartLabelShadow" type="Label" parent="UI/Control"]
 visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
@@ -284,10 +320,14 @@ __meta__ = {
 }
 
 [node name="Fadein" parent="UI" instance=ExtResource( 13 )]
+visible = false
+[connection signal="timeout" from="BonusMan/Timer" to="BonusMan" method="_on_Timer_timeout"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="health_changed" from="Player" to="UI/Control/HealthBar" method="_on_Player_health_changed"]
+[connection signal="wave_ended" from="Spawner" to="BonusMan" method="_on_Spawner_wave_ended"]
 [connection signal="wave_ended" from="Spawner" to="MusicMan" method="to_idle"]
 [connection signal="wave_started" from="Spawner" to="." method="_on_Spawner_wave_started"]
+[connection signal="wave_started" from="Spawner" to="BonusMan" method="_on_Spawner_wave_started"]
 [connection signal="wave_started" from="Spawner" to="MusicMan" method="to_battle"]
 [connection signal="wave_started" from="Spawner" to="AnimationPlayer" method="_on_Spawner_wave_started"]
 [connection signal="timeout" from="SpawnTimer" to="Spawner" method="spawn"]
