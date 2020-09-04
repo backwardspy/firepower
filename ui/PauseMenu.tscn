@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/PauseMenu.gd" type="Script" id=3]
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -26.0
+margin_top = 64.0
+margin_right = 26.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.5
+margin_top = -22.0
+margin_right = 48.5
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="Buttons"]
+margin_right = 97.0
+margin_bottom = 12.0
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+margin_top = 16.0
+margin_right = 97.0
+margin_bottom = 28.0
+text = "Quit to Menu"
+
+[node name="QuitConfirm" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -25.0
+margin_right = 59.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="QuitConfirm"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.941176 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="QuitConfirm"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.5
+margin_top = -17.0
+margin_right = 36.5
+margin_bottom = -9.0
+text = "Are you sure?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="QuitConfirm"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -55.0
+margin_top = 2.0
+margin_right = 56.0
+margin_bottom = 21.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelButton" type="Button" parent="QuitConfirm/Buttons"]
+margin_left = 39.0
+margin_right = 80.0
+margin_bottom = 19.0
+text = "Cancel"
+
+[node name="QuitButton" type="Button" parent="QuitConfirm/Buttons"]
+margin_left = 84.0
+margin_right = 111.0
+margin_bottom = 19.0
+text = "Quit"
+[connection signal="pressed" from="Buttons/ResumeButton" to="." method="resume"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="QuitConfirm/Buttons/CancelButton" to="." method="cancel_quit"]
+[connection signal="pressed" from="QuitConfirm/Buttons/QuitButton" to="." method="confirm_quit"]

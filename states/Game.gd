@@ -7,6 +7,10 @@ onready var _tween: Tween = $Tween
 var _in_endless_wave := false
 
 func handle_player_death():
+    var scene := "res://states/GameEnd.tscn" if _in_endless_wave else "res://states/GameOver.tscn"
+    quit_to(scene)
+
+func quit_to(scene: String):
     $MusicMan.fade_out()
 
     _blackout.visible = true
@@ -22,7 +26,6 @@ func handle_player_death():
     _r = _tween.start()
     yield(_tween, "tween_all_completed")
 
-    var scene := "res://states/GameEnd.tscn" if _in_endless_wave else "res://states/GameOver.tscn"
     var err := get_tree().change_scene(scene)
     if err:
         push_error("failed to change to %s scene: %s" % [scene, err])
