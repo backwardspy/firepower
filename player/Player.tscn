@@ -50,7 +50,7 @@ modulate = Color( 2, 2, 2, 1 )
 collision_layer = 6
 collision_mask = 2147483649
 script = ExtResource( 2 )
-max_health = 200.0
+max_health = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -113,4 +113,5 @@ position = Vector2( 1.5, 0 )
 [node name="Right" type="Position2D" parent="Hub/LightSlots"]
 position = Vector2( -1.5, 6 )
 rotation = 0.0523599
+[connection signal="weapon_added" from="." to="Hub/LightSlots/Center/MachineGun" method="reduce_volume"]
 [connection signal="body_entered" from="LootSuccArea" to="." method="_on_LootSuccArea_body_entered"]
