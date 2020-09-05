@@ -15,6 +15,9 @@ func get_scrap_earned() -> int:
 func get_mobs_killed() -> int:
     return _mobs_killed
 
+func calculate_score() -> int:
+    return _scrap_earned + _mobs_killed * 10
+
 func reset():
     _scrap_earned = 0
     _mobs_killed = 0
