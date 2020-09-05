@@ -54,16 +54,22 @@ margin_right = 123.0
 margin_bottom = 36.0
 text = "You killed 256 drones"
 
-[node name="Retry" type="Button" parent="ControlsBox"]
+[node name="Score" type="Label" parent="ControlsBox"]
 margin_top = 40.0
 margin_right = 123.0
-margin_bottom = 52.0
+margin_bottom = 48.0
+text = "Score: 90620"
+
+[node name="Retry" type="Button" parent="ControlsBox"]
+margin_top = 52.0
+margin_right = 123.0
+margin_bottom = 64.0
 text = "Retry"
 
 [node name="QuitToMenu" type="Button" parent="ControlsBox"]
-margin_top = 56.0
+margin_top = 68.0
 margin_right = 123.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false

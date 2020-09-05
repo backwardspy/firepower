@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/game_end/ScrapLabel.gd" type="Script" id=5]
 [ext_resource path="res://ui/game_end/KillsLabel.gd" type="Script" id=6]
+[ext_resource path="res://ui/game_end/Score.gd" type="Script" id=7]
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -25,9 +26,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -157.0
-margin_top = 38.0
+margin_top = 27.0
 margin_right = 158.0
-margin_bottom = 234.0
+margin_bottom = 223.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,13 +70,20 @@ text = "You killed 256 drones"
 autowrap = true
 script = ExtResource( 6 )
 
+[node name="Score" type="Label" parent="GameTextBox"]
+margin_top = 140.0
+margin_right = 315.0
+margin_bottom = 148.0
+text = "Score: 90620"
+script = ExtResource( 7 )
+
 [node name="MetaTextBox" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -157.0
-margin_top = 186.5
+margin_top = 192.5
 margin_right = 158.0
-margin_bottom = 241.5
+margin_bottom = 247.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -114,6 +122,7 @@ __meta__ = {
 }
 
 [node name="Fadein" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="Blackout" type="ColorRect" parent="."]
 visible = false
