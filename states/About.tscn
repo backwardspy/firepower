@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/about/About.gd" type="Script" id=3]
+[ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=4]
+
+[node name="Root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -512.0
+margin_bottom = -300.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 79.0
+margin_bottom = 20.0
+text = "Back to Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -62.0
+margin_top = 8.0
+margin_right = 62.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "About Firepower"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutInfo" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -178.0
+margin_top = 58.0
+margin_right = 178.0
+margin_bottom = -59.0
+bbcode_enabled = true
+bbcode_text = "Firepower was made in one week for olcCodeJam2020. The theme of the jam was \"The Great Machine.\"
+
+[url=]Firepower[/url]
+[url=]olcCodeJam2020[/url]
+[url=]Source code[/url]
+
+Firepower makes use of the following CC0 and CC BY 3.0 assets (click to view in your browser):
+[url=https://lospec.com/palette-list/steam-lords]\"Steam Lords\" colour palette by Slynyrd[/url]
+[url=https://opengameart.org/content/chaingun-pistol-rifle-shotgun-shots]\"Chaingun, pistol, rifle, shotgun shots\" by Michel Baradari[/url]*
+[url=https://opengameart.org/content/4-projectile-launches]\"4 projectile launches\" by Michel Baradari[/url]*
+[url=https://opengameart.org/content/metal-clang-explosions-zing]\"Metal Clang Explosions Zing\" by qubodup[/url]*
+[url=https://opengameart.org/content/factory-ambiance]\"Factory ambiance\" by yd[/url]
+[url=https://opengameart.org/content/loading-screen-loop]\"Loading screen loop\" by Brandon Morris[/url]
+[url=https://opengameart.org/content/hyperflight-racing]\"Hyperflight Racing\" by cynicmusic[/url]
+* = with modifications
+
+Built artefacts and source for Firepower are licensed under the [url=https://github.com/backwardspy/firepower/blob/master/LICENSE]MIT license[/url]."
+text = "Firepower was made in one week for olcCodeJam2020. The theme of the jam was \"The Great Machine.\"
+
+Firepower
+olcCodeJam2020
+Source code
+
+Firepower makes use of the following CC0 and CC BY 3.0 assets (click to view in your browser):
+\"Steam Lords\" colour palette by Slynyrd
+\"Chaingun, pistol, rifle, shotgun shots\" by Michel Baradari*
+\"4 projectile launches\" by Michel Baradari*
+\"Metal Clang Explosions Zing\" by qubodup*
+\"Factory ambiance\" by yd
+\"Loading screen loop\" by Brandon Morris
+\"Hyperflight Racing\" by cynicmusic
+* = with modifications
+
+Built artefacts and source for Firepower are licensed under the MIT license."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fadein" parent="." instance=ExtResource( 2 )]
+visible = false
+[connection signal="pressed" from="BackButton" to="." method="back_to_menu"]
+[connection signal="meta_clicked" from="AboutInfo" to="." method="_on_AboutInfo_meta_clicked"]
