@@ -46,15 +46,16 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -178.0
-margin_top = 58.0
+margin_top = 45.0
 margin_right = 178.0
-margin_bottom = -59.0
+margin_bottom = -47.0
 bbcode_enabled = true
 bbcode_text = "Firepower was made in one week for olcCodeJam2020. The theme of the jam was \"The Great Machine.\"
 
-[url=]Firepower[/url]
-[url=]olcCodeJam2020[/url]
-[url=]Source code[/url]
+Links:
+[url=https://backwardspy.itch.io/firepower]Firepower[/url]
+[url=https://itch.io/jam/olc-codejam-2020]olcCodeJam2020[/url]
+[url=https://github.com/backwardspy/firepower]Source code[/url]
 
 Firepower makes use of the following CC0 and CC BY 3.0 assets (click to view in your browser):
 [url=https://lospec.com/palette-list/steam-lords]\"Steam Lords\" colour palette by Slynyrd[/url]
@@ -66,9 +67,12 @@ Firepower makes use of the following CC0 and CC BY 3.0 assets (click to view in 
 [url=https://opengameart.org/content/hyperflight-racing]\"Hyperflight Racing\" by cynicmusic[/url]
 * = with modifications
 
-Built artefacts and source for Firepower are licensed under the [url=https://github.com/backwardspy/firepower/blob/master/LICENSE]MIT license[/url]."
+Built artefacts and source for Firepower are licensed under the [url=https://github.com/backwardspy/firepower/blob/master/LICENSE]MIT license[/url].
+
+Copyright (c) 2020 Chris Latham"
 text = "Firepower was made in one week for olcCodeJam2020. The theme of the jam was \"The Great Machine.\"
 
+Links:
 Firepower
 olcCodeJam2020
 Source code
@@ -83,7 +87,9 @@ Firepower makes use of the following CC0 and CC BY 3.0 assets (click to view in 
 \"Hyperflight Racing\" by cynicmusic
 * = with modifications
 
-Built artefacts and source for Firepower are licensed under the MIT license."
+Built artefacts and source for Firepower are licensed under the MIT license.
+
+Copyright (c) 2020 Chris Latham"
 __meta__ = {
 "_edit_use_anchors_": false
 }
