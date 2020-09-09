@@ -9,7 +9,6 @@ export var reduces_volume_on_add := false
 onready var _timer := $FireTimer
 
 func reduce_volume(times: int = 1):
-    var old_vol: float = $AudioPlayer.volume_db
     $AudioPlayer.volume_db -= 3.0 * times
 
 func fire():

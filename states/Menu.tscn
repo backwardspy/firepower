@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://states/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://ui/menu/TitleBob.gd" type="Script" id=10]
 [ext_resource path="res://music/Factory.ogg" type="AudioStream" id=11]
 [ext_resource path="res://tileset.tres" type="TileSet" id=12]
-[ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ui/question_mark.png" type="Texture" id=14]
 
 [node name="Root" type="Control"]
@@ -30,8 +29,6 @@ __meta__ = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 autoplay = true
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -143,16 +140,7 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Blackout" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
-
-[node name="Fadein" parent="." instance=ExtResource( 13 )]
-visible = false
 [connection signal="pressed" from="Buttons/StartGame" to="." method="start_game"]
-[connection signal="pressed" from="Buttons/QuitGame" to="." method="quit_game"]
 [connection signal="pressed" from="Buttons/QuitGame" to="." method="start_game"]
+[connection signal="pressed" from="Buttons/QuitGame" to="." method="quit_game"]
 [connection signal="pressed" from="About" to="." method="about"]

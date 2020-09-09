@@ -82,6 +82,7 @@ config/icon="res://icon.png"
 
 Wallet="*res://player/Wallet.gd"
 ScoreTracker="*res://player/ScoreTracker.gd"
+Transit="*res://transit/Transit.tscn"
 
 [display]
 

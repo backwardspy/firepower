@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://states/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=2]
 [ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -16,8 +15,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="ControlsBox" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -74,13 +71,5 @@ text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Fadein" parent="." instance=ExtResource( 4 )]
-
-[node name="Blackout" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
 [connection signal="pressed" from="ControlsBox/Retry" to="." method="retry"]
 [connection signal="pressed" from="ControlsBox/QuitToMenu" to="." method="menu"]
