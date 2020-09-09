@@ -17,8 +17,6 @@ var _dead := false
 var _weapons_added := 0
 
 onready var _health := max_health
-onready var _wallet: Wallet = get_node("/root/Wallet")
-onready var _score_tracker: ScoreTracker = get_node("/root/ScoreTracker")
 
 func hurt(damage: float):
     if _dead:
@@ -121,8 +119,8 @@ func _process(dt: float):
 func _on_LootSuccArea_body_entered(body):
     if body is Scrap:
         body.succ(self)
-        _wallet.add_scrap(1)
-        _score_tracker.add_scrap_earned(1)
+        Wallet.add_scrap(1)
+        ScoreTracker.add_scrap_earned(1)
 
 func _on_UpgradeShop_upgrade_purchased(upgrade: Upgrade, _final: bool):
     _apply_upgrade(upgrade)

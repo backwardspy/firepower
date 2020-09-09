@@ -2,7 +2,6 @@ extends Node
 
 export var initial_bonus := 30
 
-onready var _wallet: Wallet = $"/root/Wallet"
 onready var _label: Label = $"../UI/Control/ScrapBonusBox/BonusLabel"
 onready var _timer: Timer = $Timer
 
@@ -28,4 +27,4 @@ func _on_Spawner_wave_started(difficulty: int):
 func _on_Spawner_wave_ended():
     _timer.stop()
     if _bonus > 0:
-        _wallet.add_scrap(_bonus)
+        Wallet.add_scrap(_bonus)

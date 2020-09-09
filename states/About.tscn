@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
-[ext_resource path="res://effects/Fadein.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/about/About.gd" type="Script" id=3]
 [ext_resource path="res://ui/title_font.tres" type="DynamicFont" id=4]
 
@@ -93,8 +92,5 @@ Copyright (c) 2020 backwardspy"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Fadein" parent="." instance=ExtResource( 2 )]
-visible = false
 [connection signal="pressed" from="BackButton" to="." method="back_to_menu"]
 [connection signal="meta_clicked" from="AboutInfo" to="." method="_on_AboutInfo_meta_clicked"]

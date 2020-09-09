@@ -17,7 +17,6 @@ onready var _spawn_points := get_children()
 onready var _player := get_node(player_path)
 onready var _upgrade_shop: CanvasItem = get_node(upgrade_shop_path)
 onready var _spawn_timer: Timer = get_node("../SpawnTimer")
-onready var _score_tracker: ScoreTracker = get_node("/root/ScoreTracker")
 
 var _endless_mode := false
 var _wave_difficulty := 1
@@ -67,7 +66,7 @@ func _end_wave():
 
 func _on_mob_death():
     _died_this_wave += 1
-    _score_tracker.add_mob_kill()
+    ScoreTracker.add_mob_kill()
 
     if not _endless_mode and _died_this_wave >= _max_mobs:
         _end_wave()

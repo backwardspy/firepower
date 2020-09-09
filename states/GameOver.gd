@@ -1,36 +1,12 @@
 extends Control
 
-onready var _tween: Tween = $Tween
-
-func _fade_to_scene(path: String):
-    focus_mode = Control.FOCUS_NONE
-
-    $Blackout.visible = true
-
-    var _r := _tween.interpolate_property(
-        $Blackout,
-        "color:a",
-        0,
-        1,
-        0.5,
-        Tween.TRANS_LINEAR,
-        Tween.EASE_OUT
-    )
-
-    _r = _tween.start()
-    yield(_tween, "tween_all_completed")
-    var err := get_tree().change_scene(path)
-    if err:
-        push_error("failed to change scene to %s: %s" % [path, err])
-
 func retry():
-    _fade_to_scene("res://states/Game.tscn")
+    Transit.change_scene("res://states/Game.tscn", 1.0)
 
 func menu():
-    _fade_to_scene("res://states/Menu.tscn")
+    Transit.change_scene("res://states/Menu.tscn", 1.0)
 
 func _ready():
-    var scores: ScoreTracker = get_node("/root/ScoreTracker")
-    $ControlsBox/ScrapEarned.text = "You earned %s Scrap" % scores.get_scrap_earned()
-    $ControlsBox/MobsKilled.text = "You killed %s drones" % scores.get_mobs_killed()
-    $ControlsBox/Score.text = "Score: %s" % scores.calculate_score()
+    $ControlsBox/ScrapEarned.text = "You earned %s Scrap" % ScoreTracker.get_scrap_earned()
+    $ControlsBox/MobsKilled.text = "You killed %s drones" % ScoreTracker.get_mobs_killed()
+    $ControlsBox/Score.text = "Score: %s" % ScoreTracker.calculate_score()
